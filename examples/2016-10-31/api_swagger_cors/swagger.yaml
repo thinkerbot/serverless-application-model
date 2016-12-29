@@ -19,8 +19,7 @@ paths:
         responses:
           default:
             statusCode: 200
-        # NOTE: Replace <<region>> and <<account>> fields
-        uri: arn:aws:apigateway:<<region>>:lambda:path/2015-03-31/functions/arn:aws:lambda:<<region>>:<<accountId>>:function:${stageVariables.LambdaFunctionName}/invocations
+        uri: arn:aws:apigateway:<%= region %>:lambda:path/2015-03-31/functions/arn:aws:lambda:<%= region %>:<%= account_id %>:function:${stageVariables.LambdaFunctionName}/invocations
 
         passthroughBehavior: when_no_match
         httpMethod: POST
@@ -67,7 +66,7 @@ paths:
         type: string
       responses: {}
       x-amazon-apigateway-integration:
-        uri: arn:aws:apigateway:<<region>>:lambda:path/2015-03-31/functions/arn:aws:lambda:<<region>>:<<accountId>>:function:${stageVariables.LambdaFunctionName}/invocations
+        uri: arn:aws:apigateway:<%= region %>:lambda:path/2015-03-31/functions/arn:aws:lambda:<%= region %>:<%= account_id %>:function:${stageVariables.LambdaFunctionName}/invocations
         httpMethod: POST
         type: aws_proxy
     options:

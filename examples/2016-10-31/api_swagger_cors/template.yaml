@@ -6,7 +6,7 @@ Resources:
   ApiGatewayApi:
     Type: AWS::Serverless::Api
     Properties:
-      DefinitionUri: s3://<bucket>/swagger.yaml
+      DefinitionUri: <%= s3_template('swagger.yaml') %>
       StageName: Prod
       Variables:
         # NOTE: Before using this template, replace the <<region>> and <<account>> fields
@@ -17,7 +17,7 @@ Resources:
   LambdaFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://<bucket>/api_swagger_cors.zip
+      CodeUri: <%= s3_zip(['index.js'], "function") %>
       Handler: index.handler
       Runtime: nodejs4.3
       Events:
